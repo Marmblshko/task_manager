@@ -1,0 +1,9 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to projects"), projects_path %>
+  <div class="header">
+    <h1>
+      <%= @project.title %>
+      <%= @project.users.name %>
+    </h1>
+  </div>
+</main>

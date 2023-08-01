@@ -1,0 +1,9 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to project"), projects_path(@project) %>
+
+  <div class="header">
+    <h1>Edit Project</h1>
+  </div>
+
+  <%= render "form", project: @project %>
+</main>
