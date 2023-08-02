@@ -20,6 +20,7 @@
       <%= link_to "Log in", new_user_session_path %>
     <% end %>
     <%= button_to "Project", projects_path, method: :get, data: {'turbo-method': :get} %>
+    <%= button_to "Tasks", tasks_path, method: :get, data: {'turbo-method': :get} %>
   </head>
 
   <body>
