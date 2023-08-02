@@ -1,0 +1,9 @@
+<main class="container">
+  <div class="header">
+    <h1>Tasks</h1>
+    <%= link_to "New Task", new_task_path, class: "rounded-full bg-sky-500 hover:bg-sky-700" %>
+  </div>
+
+  <%= render @tasks %>
+
+</main>

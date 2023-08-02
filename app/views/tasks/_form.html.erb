@@ -1,0 +1,13 @@
+<%= simple_form_for task, html: { class: "task form" } do |f| %>
+  <% if task.errors.any? %>
+    <div class="error-message">
+      <%= task.errors.full_messages.to_sentence.capitalize %>
+    </div>
+  <% end %>
+
+  <%= f.input :title, input_html: { autofocus: true } %>
+  <%= f.input :description, input_html: { autofocus: true } %>
+  <%= f.input :status, collection: Task.statuses.keys, selected: "Fresh" %>
+  <%= f.input :project_id, collection: @projects %>
+  <%= f.submit class: "btn btn--secondary" %>
+<% end %>
