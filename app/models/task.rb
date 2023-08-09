@@ -1,7 +1,11 @@
 class Task < ApplicationRecord
   belongs_to :project
   has_one :report, dependent: :destroy
-  enum status: %i(Fresh Working Complited)
+  enum status: {
+    fresh: 0,
+    working: 1,
+    completed: 2
+  }, _default: :fresh
 
   accepts_nested_attributes_for :report
   validates :title, presence: true
