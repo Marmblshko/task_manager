@@ -4,5 +4,11 @@
     <h1>
       <%= @task.title %>
     </h1>
+    <div>
+      <%= link_to "New report", new_task_report_url(@task, @report) %> |
+      <%= link_to "Edit", edit_task_report_path(@task, @report) %> |
+      <%= link_to "Destroy", task_report_path(@task, @report), method: :delete, data: { 'turbo-method': :delete } %> |
+      <%= link_to "Show", task_report_path(@task, @report) %>
+    </div>
   </div>
 </main>
