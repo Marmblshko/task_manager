@@ -26,7 +26,11 @@ class TasksController < ApplicationController
   end
 
   def update
-    if @task.update(task_params)
+    if @task.update(task_params.except(:report))
+      report_attributes = task_params[:report]
+      if report_attributes.present?
+        @task.create_report(report_attributes)
+      end
       redirect_to @task
     else
       render :edit
@@ -45,6 +49,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :description, :status, :project_id)
+    params.require(:task).permit(:title, :description, :status, :project_id, report: [:title, :description])
   end
 end
