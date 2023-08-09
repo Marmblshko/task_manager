@@ -6,5 +6,8 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :projects
-  resources :tasks
+
+  resources :tasks do
+    resource :report
+  end
 end
