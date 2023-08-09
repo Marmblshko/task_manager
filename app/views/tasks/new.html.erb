@@ -1,9 +1,11 @@
-<main class="container">
-<%= link_to sanitize("&larr; Back to tasks"), tasks_path %>
+<main class="container mx-auto mt-4">
+  <%= link_to sanitize("&larr; Back to tasks"), tasks_path, class: "text-blue-500 mb-4 block" %>
 
-<div class="header">
-  <h1>New Task</h1>
-</div>
+  <div class="bg-blue-100 p-4 rounded-lg shadow-md">
+    <div class="header mb-4">
+      <h1 class="text-3xl font-bold mb-2">New Task</h1>
+    </div>
 
-  <%= render "form", task: @task %>
+    <%= render "form", task: @task %>
+  </div>
 </main>

@@ -1,14 +1,17 @@
-<main class="container">
-  <%= link_to sanitize("&larr; Back to tasks"), tasks_path %>
-  <div class="header">
-    <h1>
-      <%= @task.title %>
-    </h1>
-    <div>
-      <%= link_to "New report", new_task_report_url(@task, @report) %> |
-      <%= link_to "Edit", edit_task_report_path(@task, @report) %> |
-      <%= link_to "Destroy", task_report_path(@task, @report), method: :delete, data: { 'turbo-method': :delete } %> |
-      <%= link_to "Show", task_report_path(@task, @report) %>
+<main class="container mx-auto mt-4">
+  <%= link_to sanitize("&larr; Back to tasks"), tasks_path, class: "text-blue-500 mb-4 block" %>
+  <div class="bg-blue-100 p-4 rounded-lg shadow-md">
+    <div class="header mb-4">
+      <h1 class="text-3xl font-bold mb-2"><%= @task.title %></h1>
+      <div class="flex space-x-2">
+        <% if @task.report.present? %>
+          <%= link_to "Show", task_report_path(@task, @report), class: "btn btn-blue" %>
+          <%= link_to "Edit", edit_task_report_path(@task, @report), class: "btn btn-blue" %>
+          <%= link_to "Destroy", task_report_path(@task, @report), method: :delete, data: { 'turbo-method': :delete }, class: "btn btn-red" %>
+          <% else %>
+          <%= link_to "New report", new_task_report_url(@task, @report), class: "btn btn-blue" %>
+          <% end %>
+      </div>
     </div>
   </div>
 </main>

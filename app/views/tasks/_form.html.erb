@@ -7,7 +7,7 @@
 
   <%= f.input :title, input_html: { autofocus: true } %>
   <%= f.input :description, input_html: { autofocus: true } %>
-  <%= f.input :status, collection: Task.statuses.keys, selected: "Fresh" %>
+  <%= f.select :status, Task.statuses.map { |key, value| [key.humanize, key] } %>
   <%= f.input :project_id, collection: @projects %>
   <%= f.submit class: "btn btn--secondary" %>
 <% end %>
