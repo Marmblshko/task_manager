@@ -1,0 +1,10 @@
+<main class="container">
+  <!--  Todo link back-->
+  <%= link_to sanitize("&larr; Back to task")%>
+
+  <div class="header">
+    <h1>Edit Report</h1>
+  </div>
+
+  <%= render "form", report: @report %>
+</main>
