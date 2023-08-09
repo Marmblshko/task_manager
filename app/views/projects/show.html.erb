@@ -4,6 +4,11 @@
     <h1>
       <%= @project.title %>
       <%= @project.users.name %>
+      <%= @project.description %>
+      <% @project.tasks.each do |task| %>
+        <%= link_to task.title, task_path(task) %>
+        <%= task.description %>
+      <% end %>
     </h1>
   </div>
 </main>
