@@ -1,11 +1,12 @@
-<%= simple_form_for project, html: { class: "project form" } do |f| %>
+<%= simple_form_for project, html: { class: "project form bg-blue-100 p-4 rounded-lg shadow-md" } do |f| %>
   <% if project.errors.any? %>
-    <div class="error-message">
+    <div class="error-message text-red-500 font-semibold mb-4">
       <%= project.errors.full_messages.to_sentence.capitalize %>
     </div>
   <% end %>
 
-  <%= f.input :title, input_html: { autofocus: true } %>
-  <%= f.input :description, input_html: { autofocus: true } %>
-  <%= f.submit class: "btn btn-secondary" %>
+  <%= f.error_notification %>
+  <%= f.input :title, input_html: { class: "input-field" } %>
+  <%= f.input :description, input_html: { class: "input-field" } %>
+  <%= f.submit "Save", class: "btn btn-secondary mt-2 py-2 px-4 rounded-lg text-black font-semibold hover:bg-blue-500 transition duration-300 ease-in-out" %>
 <% end %>

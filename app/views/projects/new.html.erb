@@ -1,9 +1,11 @@
-<main class="container">
-  <%= link_to sanitize("&larr; Back to projects"), projects_path %>
+<main class="container mx-auto mt-4">
+  <%= link_to sanitize("&larr; Back to projects"), projects_path, class: "text-blue-500 mb-4 block" %>
 
-  <div class="header">
-    <h1>New Project</h1>
+  <div class="bg-blue-100 p-4 rounded-lg shadow-md">
+    <div class="mb-4">
+      <h1 class="text-3xl font-bold">New Project</h1>
+    </div>
+
+    <%= render "form", project: @project %>
   </div>
-
-  <%= render "form", project: @project %>
 </main>
