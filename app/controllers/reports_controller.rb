@@ -1,8 +1,8 @@
 class ReportsController < ApplicationController
   before_action :set_report, except: %i[index]
+  before_action :set_variable_report, only: %i[show edit update]
 
   def show
-    @report = @task.report
   end
 
   def new
@@ -20,11 +20,9 @@ class ReportsController < ApplicationController
   end
 
   def edit
-    @report = @task.report
   end
 
   def update
-    @report = @task.report
     if @report.update(report_params)
       redirect_to :@report
     else
@@ -39,6 +37,9 @@ class ReportsController < ApplicationController
 
   private
 
+  def set_variable_report
+    @report = @task.report
+  end
   def set_report
     @task = Task.find(params[:task_id])
   end
