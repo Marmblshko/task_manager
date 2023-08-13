@@ -1,8 +1,8 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i(show edit update destroy)
-
+  before_action :authenticate_user!
   def index
-    @projects = Project.all
+    @projects = Project.where(creator_id: current_user.id)
   end
 
   def new
@@ -11,8 +11,9 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+    @project.creator_id = current_user.id
     if @project.save
-      Membership.create(user_id: params[:user_id], project_id: @project.id)
+      Membership.create(user_id: current_user.id, project_id: @project.id)
       redirect_to @project
     else
       render :new
