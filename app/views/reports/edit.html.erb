@@ -1,9 +1,11 @@
-<main class="container">
-  <%= link_to sanitize("&larr; Back to task"), task_path(@task)%>
+<main class="container mx-auto mt-4">
+  <%= link_to sanitize("&larr; Back to task"), task_path(@task), class: "text-blue-500 mb-4 block" %>
 
-  <div class="header">
-    <h1>Edit Report</h1>
+  <div class="bg-blue-100 p-4 rounded-lg shadow-md">
+    <div class="header mb-4">
+      <h1 class="text-3xl font-bold">Edit Report</h1>
+    </div>
+
+    <%= render "form", report: @report %>
   </div>
-
-  <%= render "form", report: @report %>
 </main>
