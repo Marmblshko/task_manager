@@ -11,12 +11,11 @@ class ReportsController < ApplicationController
   end
 
   def create
-    @report = Report.new
-    @report = @task.build_report(report_params)
+    @report = Report.new(report_params)
     if @report.save
-      redirect_to @task
+      redirect_to @report.task
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -25,9 +24,9 @@ class ReportsController < ApplicationController
 
   def update
     if @report.update(report_params)
-      redirect_to :@report
+      redirect_to @report
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
