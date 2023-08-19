@@ -1,7 +1,6 @@
 class ReportsController < ApplicationController
   before_action :set_report, except: %i[index]
   before_action :set_variable_report, only: %i[show edit update]
-  before_action :authenticate_user!
 
   def show
   end

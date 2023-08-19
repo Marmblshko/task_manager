@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i(show edit update destroy)
-  before_action :authenticate_user!
   def index
     @projects = Project.where(creator_id: current_user.id)
   end

@@ -1,7 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_tasks, only: %i[show edit update destroy]
   before_action :find_projects, only: %i[new create edit update]
-  before_action :authenticate_user!
 
   def index
     @tasks = Task.joins(:project).where(project: {creator_id: current_user.id})
