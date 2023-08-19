@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
       Membership.create(user_id: current_user.id, project_id: @project.id)
       redirect_to @project
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -30,7 +30,7 @@ class ProjectsController < ApplicationController
     if @project.update(project_params)
       redirect_to @project
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
