@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_tasks, only: %i[show edit update destroy]
-  before_action :find_projects, only: %i[new edit]
+  before_action :find_projects, only: %i[new create edit update]
   before_action :authenticate_user!
 
   def index
@@ -16,7 +16,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to tasks_path
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -34,7 +34,7 @@ class TasksController < ApplicationController
       end
       redirect_to @task
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
