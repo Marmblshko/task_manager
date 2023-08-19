@@ -7,8 +7,9 @@ class Task < ApplicationRecord
     completed: 2
   }, _default: :fresh
 
-  accepts_nested_attributes_for :report
+  accepts_nested_attributes_for :report, reject_if: proc { |attributes| attributes['title'].blank? }
   validates :title, presence: true
   validates :description, presence: true
   validates :status, presence: true
+  validates :project_id, presence: true
 end
