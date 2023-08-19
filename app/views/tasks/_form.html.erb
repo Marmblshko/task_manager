@@ -1,13 +1,14 @@
-<%= simple_form_for task, html: { class: "task form" } do |f| %>
-  <% if task.errors.any? %>
-    <div class="error-message">
-      <%= task.errors.full_messages.to_sentence.capitalize %>
-    </div>
-  <% end %>
+<%= simple_form_for @task do |f| %>
+  <%= f.error_notification %>
 
-  <%= f.input :title, input_html: { autofocus: true } %>
-  <%= f.input :description, input_html: { autofocus: true } %>
-  <%= f.input :status, collection: Task.statuses.map { |key, value| [key.humanize, key] }, selected: '0' %>
-  <%= f.input :project_id, collection: @projects, required: true %>
-  <%= f.submit "Save", class: "btn btn-secondary mt-2 py-2 px-4 rounded-lg text-black font-semibold hover:bg-blue-500 transition duration-300 ease-in-out" %>
+  <div class="form-inputs">
+    <%= f.input :title, required: true, input_html: { autofocus: true } %>
+    <%= f.input :description, required: true, input_html: { autofocus: true } %>
+    <%= f.input :status, collection: Task.statuses.map { |key, value| [key.humanize, key] }, selected: '0' %>
+    <%= f.input :project_id, required: true, collection: @projects %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "Save", class: "btn btn-secondary mt-2 py-2 px-4 rounded-lg text-black font-semibold hover:bg-blue-500 transition duration-300 ease-in-out" %>
+  </div>
 <% end %>
