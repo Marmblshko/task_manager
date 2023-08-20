@@ -5,7 +5,8 @@
     <div class="header mb-4">
       <h1 class="text-3xl font-bold mb-2">Edit Project</h1>
     </div>
-
-    <%= render "form", project: @project %>
+    <%= turbo_frame_tag @project do %>
+      <%= render "form", project: @project %>
+    <% end %>
   </div>
 </main>
