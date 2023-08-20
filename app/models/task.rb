@@ -2,10 +2,10 @@ class Task < ApplicationRecord
   belongs_to :project
   has_one :report, dependent: :destroy
   enum status: {
-    fresh: 0,
-    working: 1,
-    completed: 2
-  }, _default: :fresh
+    Fresh: 0,
+    Working: 1,
+    Completed: 2
+  }, _default: :Fresh
 
   accepts_nested_attributes_for :report, reject_if: proc { |attributes| attributes['title'].blank? }
   validates :title, presence: true
