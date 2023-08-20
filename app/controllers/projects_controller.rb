@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i(show edit update destroy)
+
   def index
     @projects = Project.where(creator_id: current_user.id)
   end
@@ -13,7 +14,10 @@ class ProjectsController < ApplicationController
     @project.creator_id = current_user.id
     if @project.save
       Membership.create(user_id: current_user.id, project_id: @project.id)
-      redirect_to @project
+      respond_to do |format|
+        format.html { redirect_to projects_path, notice: "Project was successfully created." }
+        format.turbo_stream { flash.now[:notice] = "Project was successfully created." }
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,7 +31,10 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      redirect_to @project
+      respond_to do |format|
+        format.html { redirect_to @project, notice: "Project was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Project was successfully updated." }
+        end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -35,7 +42,10 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.destroy
-    redirect_to project_path
+    respond_to do |format|
+      format.html { redirect_to projects_path, notice: "Project was successfully destroyed." }
+      format.turbo_stream { flash.now[:notice] = "Project was successfully destroyed." }
+    end
   end
 
   private
