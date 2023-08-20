@@ -9,24 +9,36 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <% if user_signed_in? %>
-      <div class="text-lg bg-purple-400">
-        <span><%= current_user.username %></span>
-        <span><%= current_user.email %></span>
-      </div>
-      <%= link_to "Log out", destroy_user_session_path,method: :delete, data: { 'turbo-method': :delete } %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path %> |
-      <%= link_to "Log in", new_user_session_path %>
-    <% end %>
-    <%= button_to "Project", projects_path, method: :get, data: {'turbo-method': :get} %>
-    <%= button_to "Tasks", tasks_path, method: :get, data: {'turbo-method': :get} %>
   </head>
 
-  <body>
+  <body class="bg-blue-50">
+
+  <header class="bg-blue-500 p-4 flex justify-between items-center">
+    <div>
+      <h1 class="text-white text-2xl font-semibold">Task Manager</h1>
+    </div>
+    <nav class="space-x-4">
+      <% if user_signed_in? %>
+          <span class="text-white"><%= current_user.username %></span>
+          <span class="text-white"><%= current_user.email %></span>
+        <%= link_to "Log out", destroy_user_session_path,method: :delete, data: { 'turbo-method': :delete }, class: "text-white hover:underline" %>
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path, class: "text-white hover:underline" %>
+        <%= link_to "Log in", new_user_session_path, class: "text-white hover:underline" %>
+      <% end %>
+      <%= link_to "Project", projects_path, method: :get, data: {'turbo-method': :get}, class: "text-white hover:underline" %>
+      <%= link_to "Tasks", tasks_path, method: :get, data: {'turbo-method': :get}, class: "text-white hover:underline" %>
+    </nav>
+  </header>
+
+  <div class="flex justify-center items-center">
+    <div>
+      <p class="notice text-green-600"><%= notice %></p>
+      <p class="alert text-red-600"><%= alert %></p>
+    </div>
+  </div>
+
     <main class="container mx-auto mt-28 px-5 flex">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
       <%= yield %>
     </main>
   </body>
