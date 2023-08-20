@@ -1,0 +1,6 @@
+<%= turbo_stream.prepend "projects" do %>
+  <%= render @project %>
+<% end %>
+
+<%= turbo_stream.update Project.new, "" %>
+<%= turbo_stream.prepend "flash", partial: "layouts/flash" %>
