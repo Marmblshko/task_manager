@@ -31,12 +31,11 @@
     </nav>
   </header>
 
-  <div class="flex justify-center items-center">
-    <div>
-      <p class="notice text-green-600"><%= notice %></p>
-      <p class="alert text-red-600"><%= alert %></p>
-    </div>
+  <div id="flash" class="flash">
+    <%= render "layouts/flash" %>
   </div>
+
+
 
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
