@@ -1,8 +1,12 @@
 <main class="container mx-auto mt-4">
   <div class="header flex justify-between items-center mb-4">
     <h1 class="text-3xl font-bold">Tasks</h1>
-    <%= link_to "New Task", new_task_path, class: "rounded-full bg-sky-500 hover:bg-sky-700 text-white px-4 py-2 font-semibold transition duration-300 ease-in-out" %>
+    <%= link_to "New Task", new_task_path, data: { turbo_frame: dom_id(Task.new) }, class: "rounded-full bg-sky-500 hover:bg-sky-700 text-white px-4 py-2 font-semibold transition duration-300 ease-in-out" %>
   </div>
 
-  <%= render @tasks %>
+  <%= turbo_frame_tag Task.new %>
+
+  <%= turbo_frame_tag "tasks" do %>
+    <%= render @tasks %>
+  <% end %>
 </main>

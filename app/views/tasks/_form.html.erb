@@ -1,4 +1,4 @@
-<%= simple_form_for @task do |f| %>
+<%= simple_form_for(@task, html: { class: "task form" }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -9,6 +9,7 @@
   </div>
 
   <div class="form-actions">
+    <%= link_to "Cancel", tasks_path, class: "btn btn-secondary mt-2 py-2 px-4 rounded-lg text-black font-semibold hover:bg-red-500 transition duration-300 ease-in-out" %>
     <%= f.submit "Save", class: "btn btn-secondary mt-2 py-2 px-4 rounded-lg text-black font-semibold hover:bg-blue-500 transition duration-300 ease-in-out" %>
   </div>
 <% end %>

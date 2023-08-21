@@ -5,7 +5,8 @@
     <div class="header mb-4">
       <h1 class="text-3xl font-bold mb-2">New Task</h1>
     </div>
-
-    <%= render "form", task: @task %>
+    <%= turbo_frame_tag @task do %>
+      <%= render "form", task: @task %>
+    <% end %>
   </div>
 </main>
