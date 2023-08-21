@@ -13,7 +13,10 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save
-      redirect_to @task
+      respond_to do |format|
+        format.html { redirect_to @task, notice: "Task was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Task was successfully updated." }
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -31,7 +34,10 @@ class TasksController < ApplicationController
       if report_attributes.present?
         @task.create_report(report_attributes)
       end
-      redirect_to @task
+      respond_to do |format|
+        format.html { redirect_to @task, notice: "Task was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Task was successfully updated." }
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -39,7 +45,10 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to tasks_url
+    respond_to do |format|
+      format.html { redirect_to tasks_path, notice: "Task was successfully updated." }
+      format.turbo_stream { flash.now[:notice] = "Task was successfully updated." }
+    end
   end
 
   private
