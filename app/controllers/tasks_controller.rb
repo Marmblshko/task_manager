@@ -14,8 +14,8 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     if @task.save
       respond_to do |format|
-        format.html { redirect_to @task, notice: "Task was successfully updated." }
-        format.turbo_stream { flash.now[:notice] = "Task was successfully updated." }
+        format.html { redirect_to @task, notice: "Task was successfully created." }
+        format.turbo_stream { flash.now[:notice] = "Task was successfully created." }
       end
     else
       render :new, status: :unprocessable_entity
@@ -46,8 +46,8 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to tasks_path, notice: "Task was successfully updated." }
-      format.turbo_stream { flash.now[:notice] = "Task was successfully updated." }
+      format.html { redirect_to tasks_path, notice: "Task was successfully destroyed." }
+      format.turbo_stream { flash.now[:notice] = "Task was successfully destroyed." }
     end
   end
 
@@ -56,6 +56,7 @@ class TasksController < ApplicationController
   def find_projects
     @projects = Project.where(creator_id: current_user.id)
   end
+
   def set_tasks
     @task = Task.find(params[:id])
   end
