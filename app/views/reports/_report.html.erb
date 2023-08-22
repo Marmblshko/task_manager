@@ -1,0 +1,6 @@
+<%= turbo_frame_tag @report do %>
+  <div>
+    <p class="text-gray-700 mb-4">Report name: <%= @task.report.title %></p>
+    <p class="text-gray-700 mb-4">Description: <%= @task.report.description %></p>
+  </div>
+<% end %>

@@ -1,5 +1,5 @@
 <%= simple_form_for @task do |f| %>
-  <%= f.simple_fields_for @report do |report_form| %>
+  <%= f.simple_fields_for :report, @task.build_report do |report_form| %>
 
     <%= report_form.error_notification %>
 
