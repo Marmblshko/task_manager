@@ -6,6 +6,8 @@
       <h1 class="text-3xl font-bold">New Report</h1>
     </div>
 
-    <%= render "form", report: @report %>
+    <%= turbo_frame_tag @report do %>
+      <%= render "form", report: @report %>
+    <% end %>
   </div>
 </main>
