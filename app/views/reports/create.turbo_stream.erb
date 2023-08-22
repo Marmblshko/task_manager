@@ -1,0 +1,6 @@
+<%= turbo_stream.prepend "report" do %>
+  <%= render @report %>
+<% end %>
+
+<%= turbo_stream.update Report.new, "" %>
+<%= render_turbo_stream_flash_messages %>
