@@ -6,13 +6,17 @@ class ReportsController < ApplicationController
   end
 
   def new
-    @report = Report.new
+    @report = @task.build_report
   end
 
   def create
-    @report = Report.new(report_params)
+    @report = @task.create_report(report_params)
+    @task.report = @report
     if @report.save
-      redirect_to @report.task
+      respond_to do |format|
+        format.html { redirect_to @report.task, notice: "Report was successfully cr." }
+        format.turbo_stream { flash.now[:notice] = "Report was successfully cr." }
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -23,7 +27,10 @@ class ReportsController < ApplicationController
 
   def update
     if @report.update(report_params)
-      redirect_to @report
+      respond_to do |format|
+        format.html { redirect_to @report, notice: "Task was successfully upd." }
+        format.turbo_stream { flash.now[:notice] = "Report was successfully upd." }
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -39,6 +46,7 @@ class ReportsController < ApplicationController
   def set_variable_report
     @report = @task.report
   end
+
   def set_report
     @task = Task.find(params[:task_id])
   end

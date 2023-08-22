@@ -29,14 +29,10 @@ class TasksController < ApplicationController
   end
 
   def update
-    if @task.update(task_params.except(:report))
-      report_attributes = task_params[:report]
-      if report_attributes.present?
-        @task.create_report(report_attributes)
-      end
-      respond_to do |format|
-        format.html { redirect_to @task, notice: "Task was successfully updated." }
-        format.turbo_stream { flash.now[:notice] = "Task was successfully updated." }
+    if @task.update(task_params)
+    respond_to do |format|
+      format.html { redirect_to @task, notice: "Task was successfully updated." }
+      format.turbo_stream { flash.now[:notice] = "Task was successfully updated." }
       end
     else
       render :edit, status: :unprocessable_entity
@@ -62,6 +58,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :description, :status, :project_id, report: [:title, :description])
+    params.require(:task).permit(:title, :description, :status, :project_id, report_attributes: [:title, :description])
   end
 end
