@@ -35,3 +35,4 @@
 
 #Ignore RubyMine
 .idea
+/config/credentials/production.key
