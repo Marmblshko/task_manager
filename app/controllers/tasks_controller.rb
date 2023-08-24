@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   before_action :find_projects, only: %i[new create edit update]
 
   def index
-    @tasks = Task.joins(:project).where(project: {creator_id: current_user.id})
+    @tasks = Task.joins(:project).where(project: {creator_id: current_user.id}).includes([:project])
   end
 
   def new
