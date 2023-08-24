@@ -6,9 +6,15 @@
       <span>Project: <%= link_to @task.project.title, project_path(@task.project), data: { turbo_frame: "_top" }, class: "text-blue-500 font-semibold text-xl mb-2 inline-block" %></span>
       <p class="text-gray-700 mb-4">Description: <%= @task.description %></p>
       <p class="text-gray-700 mb-4">Status: <%= @task.status %></p>
+      <div class="flex flex-row space-x-2">
+      <% Task.statuses.each_key do |name| %>
+        <%= button_to name, task_path(@task, task: { status: name }), method: :patch, data: { turbo: "false" }, class: "btn bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" %>
+      <% end %>
+        </div>
       <div class="flex flex-col space-x-2">
         <% if @task.report.present? %>
-          <p class="text-red-700 mb-4 block">Report doesn't work correctly!!! After creating, you must refresh the page.</p>
+          <p class="text-red-700 mb-4 block">Report doesn't work correctly!!! After creating, you must refresh the
+            page.</p>
           <p class="text-red-700 mb-4 block">When edit it is broken more.</p>
           <%= turbo_frame_tag "report" do %>
             <%= render "reports/report" %>
