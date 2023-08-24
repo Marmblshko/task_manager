@@ -1,24 +1,15 @@
-# README
+# Project Title
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Task Manager created with Ruby on Rails 7 + Hotwire. 
+# 
+#add description  
+# 
+# 
 
-Things you may want to cover:
+#todo
 
-* Ruby version
+Status can be changed by button press (done but add Hotwire)
 
-* System dependencies
+Fix reports
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Improve report for future plans
