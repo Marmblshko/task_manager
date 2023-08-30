@@ -12,30 +12,11 @@
   </head>
 
   <body class="bg-blue-50">
+    <%= render "layouts/nav" %>
 
-  <header class="bg-blue-500 p-4 flex justify-between items-center">
-    <div>
-      <h1 class="text-white text-2xl font-semibold">Task Manager</h1>
+    <div id="flash" class="flash">
+      <%= render "layouts/flash" %>
     </div>
-    <nav class="space-x-4">
-      <% if user_signed_in? %>
-          <span class="text-white"><%= current_user.username %></span>
-          <span class="text-white"><%= current_user.email %></span>
-        <%= link_to "Log out", destroy_user_session_path,method: :delete, data: { 'turbo-method': :delete }, class: "text-white hover:underline" %>
-      <% else %>
-        <%= link_to "Sign up", new_user_registration_path, class: "text-white hover:underline" %>
-        <%= link_to "Log in", new_user_session_path, class: "text-white hover:underline" %>
-      <% end %>
-      <%= link_to "Project", projects_path, method: :get, data: {'turbo-method': :get}, class: "text-white hover:underline" %>
-      <%= link_to "Tasks", tasks_path, method: :get, data: {'turbo-method': :get}, class: "text-white hover:underline" %>
-    </nav>
-  </header>
-
-  <div id="flash" class="flash">
-    <%= render "layouts/flash" %>
-  </div>
-
-
 
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
