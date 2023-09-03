@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   resources :projects
 
   resources :tasks do
-    resource :report
+    resources :reports, except: [:index, :show]
   end
 end
