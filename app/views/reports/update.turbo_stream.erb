@@ -1,2 +1,7 @@
-<%= turbo_stream.replace @report %>
+<%= turbo_stream.remove @report %>
+
+<%= turbo_stream.prepend "reports" do %>
+  <%= render @report, task: @task %>
+<% end %>
+
 <%= render_turbo_stream_flash_messages %>

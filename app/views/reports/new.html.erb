@@ -7,7 +7,7 @@
     </div>
 
     <%= turbo_frame_tag @report do %>
-      <%= render "form", report: @report %>
+      <%= render "form", task: @task, report: @report %>
     <% end %>
   </div>
 </main>
