@@ -1,5 +1,5 @@
 class Report < ApplicationRecord
-  belongs_to :task, inverse_of: :report
+  belongs_to :task
 
   validates :title, presence: true
   validates :description, presence: true
