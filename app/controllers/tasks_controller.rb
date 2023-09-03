@@ -23,6 +23,7 @@ class TasksController < ApplicationController
   end
 
   def show
+    @reports = @task.reports
   end
 
   def edit
@@ -58,6 +59,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :description, :status, :project_id, report_attributes: [:title, :description])
+    params.require(:task).permit(:title, :description, :status, :project_id, reports_attributes: [:title, :description])
   end
 end
