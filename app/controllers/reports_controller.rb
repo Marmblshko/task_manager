@@ -1,20 +1,16 @@
 class ReportsController < ApplicationController
-  before_action :set_report, except: %i[index]
-  before_action :set_variable_report, only: %i[show edit update]
-
-  def show
-  end
+  before_action :set_task, except: %i[index show]
+  before_action :set_report, only: %i[edit update destroy]
 
   def new
-    @report = @task.build_report
+    @report = @task.reports.build
   end
 
   def create
-    @report = @task.create_report(report_params)
-    @task.report = @report
+    @report = @task.reports.create(report_params)
     if @report.save
       respond_to do |format|
-        format.html { redirect_to @report.task, notice: "Report was successfully cr." }
+        format.html { redirect_to @task, notice: "Report was successfully cr." }
         format.turbo_stream { flash.now[:notice] = "Report was successfully cr." }
       end
     else
@@ -28,7 +24,7 @@ class ReportsController < ApplicationController
   def update
     if @report.update(report_params)
       respond_to do |format|
-        format.html { redirect_to @report, notice: "Task was successfully upd." }
+        format.html { redirect_to @task, notice: "Report was successfully upd." }
         format.turbo_stream { flash.now[:notice] = "Report was successfully upd." }
       end
     else
@@ -37,17 +33,20 @@ class ReportsController < ApplicationController
   end
 
   def destroy
-    @task.report.destroy
-    redirect_to @task
+    @report.destroy
+    respond_to do |format|
+      format.html { redirect_to @task, notice: "Report was successfully destroyed." }
+      format.turbo_stream { flash.now[:notice] = "Report was successfully destroyed." }
+    end
   end
 
   private
 
-  def set_variable_report
-    @report = @task.report
+  def set_report
+    @report = @task.reports.find(params[:id])
   end
 
-  def set_report
+  def set_task
     @task = Task.find(params[:task_id])
   end
 
