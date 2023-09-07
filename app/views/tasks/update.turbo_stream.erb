@@ -1,2 +1,6 @@
 <%= turbo_stream.replace @task %>
 <%= render_turbo_stream_flash_messages %>
+
+<%= turbo_stream.replace "detailed" do %>
+  <%= render partial: "tasks/detailed_task" %>
+<% end %>
