@@ -8,6 +8,7 @@ class ReportsController < ApplicationController
 
   def create
     @report = @task.reports.create(report_params)
+    @report.creator_username = current_user.username
     if @report.save
       respond_to do |format|
         format.html { redirect_to @task, notice: "Report was successfully cr." }

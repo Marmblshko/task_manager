@@ -36,6 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_160932) do
     t.bigint "task_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "creator_username"
     t.index ["task_id"], name: "index_reports_on_task_id"
   end
 
