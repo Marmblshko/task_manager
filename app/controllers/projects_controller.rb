@@ -2,7 +2,11 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: %i(show edit update destroy)
 
   def index
-    @projects = Project.where(creator_id: current_user.id)
+    if current_user.role == "Admin"
+      @projects = Project.all
+    else
+      @projects = Project.where(Project.arel_table[:users_in_project].contains([current_user.id])).or(Project.where(creator_id: current_user.id))
+    end
   end
 
   def new
@@ -12,6 +16,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.creator_id = current_user.id
+    @project.users_in_project = [current_user.id] if @project.users_in_project.blank?
     if @project.save
       Membership.create(user_id: current_user.id, project_id: @project.id)
       respond_to do |format|
@@ -55,6 +60,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:title, :description)
+    params.require(:project).permit(:title, :description, users_in_project: [])
   end
 end

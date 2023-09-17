@@ -7,10 +7,10 @@
     <p class="text-gray-700 mb-4">Description: <%= @project.description %></p>
     <div class="border-t border-blue-300 pt-4">
       <% @project.tasks.each do |task| %>
-        <div class="mb-2">
-          <%= link_to task.title, task_path(task), class: "text-blue-600 font-semibold" %>
-          <p class="text-gray-600">Description: <%= task.description %></p>
-          <p class="text-gray-600">Status: <%= task.status %></p>
+        <div class="mb-3 block rounded-lg bg-blue-200 border-2 border-handwrite border-blue-400 mt-5 p-3">
+          <%= link_to task.title, task_path(task), class: "text-blue-600 text-xl font-medium leading-tight" %>
+          <p class="text-gray-600 text-base font-medium leading-tight mb-2">Description: <%= task.description %></p>
+          <p class="text-gray-600 text-base font-medium leading-tight mb-2">Status: <%= task.status %></p>
         </div>
       <% end %>
     </div>

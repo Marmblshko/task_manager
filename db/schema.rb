@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_160932) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "creator_id"
+    t.integer "users_in_project", default: [], array: true
   end
 
   create_table "reports", force: :cascade do |t|

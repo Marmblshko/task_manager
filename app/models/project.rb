@@ -8,5 +8,5 @@ class Project < ApplicationRecord
   validates :description, presence: true
   validates :creator_id, presence: true
 
-  broadcasts_to ->(project) {:projects_list}
+  broadcasts_to ->(project) {:projects_list}, inserts_by: :prepend
 end

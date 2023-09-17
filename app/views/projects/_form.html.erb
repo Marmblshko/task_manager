@@ -4,6 +4,14 @@
   <div class="form-inputs">
     <%= f.input :title, required: true, input_html: { class: "input-field" } %>
     <%= f.input :description, required: true, input_html: { class: "input-field" } %>
+    <% if current_user && (current_user.role == 'Moderator' || current_user.role == 'Admin') %>
+      <%= f.collection_check_boxes :users_in_project, User.where.not(id: current_user.id), :id, :username, include_hidden: false do |b| %>
+        <div class="flex items-center">
+          <%= b.check_box(class: "form-checkbox h-5 w-5 text-indigo-600") %>
+          <%= b.label(class: "ml-2 text-gray-700") %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="form-actions">
