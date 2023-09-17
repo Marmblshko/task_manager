@@ -8,4 +8,11 @@ class User < ApplicationRecord
   has_many :projects, through: :memberships, dependent: :destroy
 
   validates :username, presence: true, uniqueness: true
+
+  enum role: {
+    User: 0,
+    Moderator: 1,
+    Admin: 2
+  }, _default: :User
+
 end

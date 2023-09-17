@@ -5,8 +5,9 @@
       <div class="flex md:order-2">
         <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { 'turbo-method': :delete }, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
         <div class="flex items-center">
-          <span class="mx-3 text-sm text-gray-500 dark:text-white hover:underline"><%= current_user.username %></span>
-          <span class="text-sm text-blue-600 dark:text-blue-500 hover:underline"><%= current_user.email %></span>
+          <span class="mx-1 text-sm text-gray-500 dark:text-white hover:underline">Username: <%= current_user.username %></span>
+          <span class="mx-1 text-sm text-blue-600 dark:text-blue-500 hover:underline">Email: <%= current_user.email %></span>
+          <span class="mx-1 text-sm text-blue-600 dark:text-blue-500 hover:underline"> Role: <%= current_user.role %></span>
         </div>
       </div>
     <% else %>
