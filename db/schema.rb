@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_13_160932) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_17_171610) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,6 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_160932) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "creator_username"
+    t.integer "creator_id"
     t.index ["task_id"], name: "index_reports_on_task_id"
   end
 
@@ -47,6 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_160932) do
     t.bigint "project_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "creator_id"
     t.index ["project_id"], name: "index_tasks_on_project_id"
   end
 

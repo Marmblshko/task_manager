@@ -13,5 +13,5 @@ class Task < ApplicationRecord
   validates :status, presence: true
   validates :project_id, presence: true
 
-  broadcasts_to ->(task) { :tasks_list }
+  broadcasts_to ->(task) { :tasks_list }, inserts_by: :prepend
 end
