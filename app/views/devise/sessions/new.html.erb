@@ -11,7 +11,12 @@
     <%= f.input :password,
                 required: false,
                 input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    <% if devise_mapping.rememberable? %>
+      <div class="mx-1">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end %>
   </div>
 
   <div class="form-actions">
