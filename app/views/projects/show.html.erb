@@ -1,5 +1,8 @@
 <main class="container mx-auto mt-4">
-  <%= link_to sanitize("&larr; Back to projects"), projects_path, class: "text-blue-500 mb-4 block" %>
+  <div class="flex justify-between mb-4">
+    <%= link_to sanitize("&larr; Back to projects"), projects_path, class: "text-blue-500 block" %>
+    <%= link_to sanitize("Go to tasks &rarr;"), tasks_path, class: "text-blue-500 block" %>
+  </div>
   <div class="bg-blue-200 p-4 rounded-lg shadow-md">
     <h1 class="text-3xl font-bold mb-2">
       <%= @project.title %>

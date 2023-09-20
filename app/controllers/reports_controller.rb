@@ -12,8 +12,8 @@ class ReportsController < ApplicationController
     @report.creator_id = current_user.id
     if @report.save
       respond_to do |format|
-        format.html { redirect_to @task, notice: "Report was successfully cr." }
-        format.turbo_stream { flash.now[:notice] = "Report was successfully cr." }
+        format.html { redirect_to @task, notice: "Report was successfully created." }
+        format.turbo_stream { flash.now[:notice] = "Report was successfully created." }
       end
     else
       render :new, status: :unprocessable_entity
@@ -26,8 +26,8 @@ class ReportsController < ApplicationController
   def update
     if @report.update(report_params)
       respond_to do |format|
-        format.html { redirect_to @task, notice: "Report was successfully upd." }
-        format.turbo_stream { flash.now[:notice] = "Report was successfully upd." }
+        format.html { redirect_to @task, notice: "Report was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Report was successfully updated." }
       end
     else
       render :edit, status: :unprocessable_entity
