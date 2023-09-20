@@ -7,9 +7,16 @@ describe Project do
     it {should validate_presence_of :creator_id}
   end
 
+  describe "database" do
+    it { should have_db_column(:title).of_type(:string) }
+    it { should have_db_column(:description).of_type(:text) }
+    it { should have_db_column(:creator_id).of_type(:integer) }
+    it { should have_db_column(:users_in_project).of_type(:integer).with_options(array: true, default: []) }
+  end
+
   describe "associations" do
-    it {should have_many :tasks}
-    it {should have_many :users}
+    it {should have_many(:tasks).dependent(:destroy)}
+    it {should have_many(:users).through(:memberships) }
     it {should have_many :memberships}
   end
 
