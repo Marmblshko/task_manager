@@ -1,8 +1,17 @@
 FactoryBot.define do
   factory :user do
-    username {'Tester 1'}
-    email {'Tester1@example.com'}
-    password {123123}
-    password_confirmation {123123}
+    sequence(:username) {|n| "#{n}_#{Faker::JapaneseMedia::CowboyBebop.character}" }
+    email { Faker::Internet.email }
+    password { 123123 }
+    password_confirmation { 123123 }
+    role { 'User' }
+  end
+
+  trait :moderator do
+    role { 'Moderator' }
+  end
+
+  trait :admin do
+    role { 'Admin' }
   end
 end
