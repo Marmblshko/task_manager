@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe ReportsController, type: :controller do
+RSpec.describe ReportsController do
   let(:user) { create(:user) }
   let(:project) { create(:project) }
-  let(:task) { create(:task, project: project) }
-  let(:report) { create(:report, task: task) }
+  let(:task) { create(:task, project:) }
+  let(:report) { create(:report, task:) }
   let(:other_user) { create(:user) }
 
   before { sign_in user }
@@ -19,9 +19,9 @@ RSpec.describe ReportsController, type: :controller do
   describe 'POST #create' do
     context 'with valid parameters' do
       it 'creates a new report' do
-        expect {
+        expect do
           post :create, params: { task_id: task.id, report: attributes_for(:report) }
-        }.to change(Report, :count).by(1)
+        end.to change(Report, :count).by(1)
       end
 
       it 'assigns the current user as the creator' do
@@ -36,15 +36,15 @@ RSpec.describe ReportsController, type: :controller do
 
       it 'sets a flash notice' do
         post :create, params: { task_id: task.id, report: attributes_for(:report) }
-        expect(flash[:notice]).to eq("Report was successfully created.")
+        expect(flash[:notice]).to eq('Report was successfully created.')
       end
     end
 
     context 'with invalid parameters' do
       it 'does not create a new report' do
-        expect {
+        expect do
           post :create, params: { task_id: task.id, report: attributes_for(:report, title: nil) }
-        }.not_to change(Report, :count)
+        end.not_to change(Report, :count)
       end
 
       it 'renders the new template' do
@@ -77,7 +77,7 @@ RSpec.describe ReportsController, type: :controller do
 
       it 'sets a flash notice' do
         put :update, params: { task_id: task.id, id: report.id, report: { title: 'Updated Title' } }
-        expect(flash[:notice]).to eq("Report was successfully updated.")
+        expect(flash[:notice]).to eq('Report was successfully updated.')
       end
     end
 
@@ -99,9 +99,9 @@ RSpec.describe ReportsController, type: :controller do
   describe 'DELETE #destroy' do
     it 'destroys the report' do
       report
-      expect {
+      expect do
         delete :destroy, params: { task_id: task.id, id: report.id }
-      }.to change(Report, :count).by(-1)
+      end.to change(Report, :count).by(-1)
     end
 
     it 'redirects to the task' do
@@ -111,7 +111,7 @@ RSpec.describe ReportsController, type: :controller do
 
     it 'sets a flash notice' do
       delete :destroy, params: { task_id: task.id, id: report.id }
-      expect(flash[:notice]).to eq("Report was successfully destroyed.")
+      expect(flash[:notice]).to eq('Report was successfully destroyed.')
     end
   end
 end

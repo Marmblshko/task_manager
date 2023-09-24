@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe TasksController, type: :controller do
+RSpec.describe TasksController do
   let(:user) { create(:user) }
   let(:project) { create(:project) }
   let(:task) { create(:task) }
@@ -24,9 +24,9 @@ RSpec.describe TasksController, type: :controller do
   describe 'POST #create' do
     context 'with valid parameters' do
       it 'creates a new task' do
-        expect {
+        expect do
           post :create, params: { task: attributes_for(:task, project_id: project.id) }
-        }.to change(Task, :count).by(1)
+        end.to change(Task, :count).by(1)
       end
 
       it 'assigns the current user as the creator' do
@@ -41,15 +41,15 @@ RSpec.describe TasksController, type: :controller do
 
       it 'sets a flash notice' do
         post :create, params: { task: attributes_for(:task, project_id: project.id) }
-        expect(flash[:notice]).to eq("Task was successfully created.")
+        expect(flash[:notice]).to eq('Task was successfully created.')
       end
     end
 
     context 'with invalid parameters' do
       it 'does not create a new task' do
-        expect {
+        expect do
           post :create, params: { task: attributes_for(:task, project_id: project.id, title: nil) }
-        }.not_to change(Task, :count)
+        end.not_to change(Task, :count)
       end
 
       it 'renders the new template' do
@@ -89,7 +89,7 @@ RSpec.describe TasksController, type: :controller do
 
       it 'sets a flash notice' do
         put :update, params: { id: task.id, task: { title: 'Updated Title' } }
-        expect(flash[:notice]).to eq("Task was successfully updated.")
+        expect(flash[:notice]).to eq('Task was successfully updated.')
       end
     end
 
@@ -111,9 +111,9 @@ RSpec.describe TasksController, type: :controller do
   describe 'DELETE #destroy' do
     it 'destroys the task' do
       task
-      expect {
+      expect do
         delete :destroy, params: { id: task.id }
-      }.to change(Task, :count).by(-1)
+      end.to change(Task, :count).by(-1)
     end
 
     it 'redirects to the tasks path' do
@@ -123,7 +123,7 @@ RSpec.describe TasksController, type: :controller do
 
     it 'sets a flash notice' do
       delete :destroy, params: { id: task.id }
-      expect(flash[:notice]).to eq("Task was successfully destroyed.")
+      expect(flash[:notice]).to eq('Task was successfully destroyed.')
     end
   end
 end

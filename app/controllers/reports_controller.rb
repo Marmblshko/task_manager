@@ -1,9 +1,12 @@
 class ReportsController < ApplicationController
-  before_action :set_task, except: %i[index show]
+  before_action :set_task, only: %i[new create edit update destroy]
   before_action :set_report, only: %i[edit update destroy]
 
   def new
     @report = @task.reports.build
+  end
+
+  def edit
   end
 
   def create
@@ -12,22 +15,19 @@ class ReportsController < ApplicationController
     @report.creator_id = current_user.id
     if @report.save
       respond_to do |format|
-        format.html { redirect_to @task, notice: "Report was successfully created." }
-        format.turbo_stream { flash.now[:notice] = "Report was successfully created." }
+        format.html { redirect_to @task, notice: 'Report was successfully created.' }
+        format.turbo_stream { flash.now[:notice] = 'Report was successfully created.' }
       end
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  def edit
-  end
-
   def update
     if @report.update(report_params)
       respond_to do |format|
-        format.html { redirect_to @task, notice: "Report was successfully updated." }
-        format.turbo_stream { flash.now[:notice] = "Report was successfully updated." }
+        format.html { redirect_to @task, notice: 'Report was successfully updated.' }
+        format.turbo_stream { flash.now[:notice] = 'Report was successfully updated.' }
       end
     else
       render :edit, status: :unprocessable_entity
@@ -37,8 +37,8 @@ class ReportsController < ApplicationController
   def destroy
     @report.destroy
     respond_to do |format|
-      format.html { redirect_to @task, notice: "Report was successfully destroyed." }
-      format.turbo_stream { flash.now[:notice] = "Report was successfully destroyed." }
+      format.html { redirect_to @task, notice: 'Report was successfully destroyed.' }
+      format.turbo_stream { flash.now[:notice] = 'Report was successfully destroyed.' }
     end
   end
 

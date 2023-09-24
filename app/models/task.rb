@@ -1,6 +1,6 @@
 class Task < ApplicationRecord
   belongs_to :project
-  has_many :reports, foreign_key: :task_id, dependent: :destroy
+  has_many :reports, dependent: :destroy
   enum status: {
     Fresh: 0,
     Working: 1,
@@ -11,7 +11,6 @@ class Task < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
   validates :status, presence: true
-  validates :project_id, presence: true
 
   broadcasts_to ->(task) { :tasks_list }, inserts_by: :prepend
 end

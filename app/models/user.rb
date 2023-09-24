@@ -14,5 +14,4 @@ class User < ApplicationRecord
     Moderator: 1,
     Admin: 2
   }, _default: :User
-
 end

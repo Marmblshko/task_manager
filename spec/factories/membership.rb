@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :membership do
-    user { create(:user) }
-    project { create(:project) }
+    user { association(:user) }
+    project { association(:project) }
   end
 end

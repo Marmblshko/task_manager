@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ProjectsController, type: :controller do
+RSpec.describe ProjectsController do
   let(:user) { create(:user) }
 
   before { sign_in user }
@@ -48,9 +48,9 @@ RSpec.describe ProjectsController, type: :controller do
   describe 'POST #create' do
     context 'with valid parameters' do
       it 'creates a new project' do
-        expect {
+        expect do
           post :create, params: { project: attributes_for(:project) }
-        }.to change(Project, :count).by(1)
+        end.to change(Project, :count).by(1)
       end
 
       it 'assigns the current user as the creator' do
@@ -65,15 +65,15 @@ RSpec.describe ProjectsController, type: :controller do
 
       it 'sets a flash notice' do
         post :create, params: { project: attributes_for(:project) }
-        expect(flash[:notice]).to eq("Project was successfully created.")
+        expect(flash[:notice]).to eq('Project was successfully created.')
       end
     end
 
     context 'with invalid parameters' do
       it 'does not create a new project' do
-        expect {
+        expect do
           post :create, params: { project: attributes_for(:project, title: nil) }
-        }.not_to change(Project, :count)
+        end.not_to change(Project, :count)
       end
 
       it 'renders the new template' do
@@ -84,7 +84,6 @@ RSpec.describe ProjectsController, type: :controller do
   end
 
   describe 'GET #show' do
-
     let(:project) { create(:project) }
 
     it 'returns a successful response' do
@@ -120,7 +119,7 @@ RSpec.describe ProjectsController, type: :controller do
 
       it 'sets a flash notice' do
         put :update, params: { id: project.id, project: { title: 'Updated Title' } }
-        expect(flash[:notice]).to eq("Project was successfully updated.")
+        expect(flash[:notice]).to eq('Project was successfully updated.')
       end
     end
 
@@ -144,9 +143,9 @@ RSpec.describe ProjectsController, type: :controller do
 
     it 'destroys the project' do
       project
-      expect {
+      expect do
         delete :destroy, params: { id: project.id }
-      }.to change(Project, :count).by(-1)
+      end.to change(Project, :count).by(-1)
     end
 
     it 'redirects to the projects path' do
@@ -156,7 +155,7 @@ RSpec.describe ProjectsController, type: :controller do
 
     it 'sets a flash notice' do
       delete :destroy, params: { id: project.id }
-      expect(flash[:notice]).to eq("Project was successfully destroyed.")
+      expect(flash[:notice]).to eq('Project was successfully destroyed.')
     end
   end
 end

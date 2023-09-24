@@ -16,6 +16,11 @@ AllCops:
     - 'bin/*'
     - 'config.ru'
     - 'Rakefile'
+    - '**/spec/models/*'
+    - '**/spec/support/*'
+    - '**/spec/rails_helper.rb'
+    - '**/spec/spec_helper.rb'
+    - '**/test/test_helper.rb'
 
 Style/Documentation:
   Enabled: false
@@ -36,4 +41,13 @@ Lint/UnusedMethodArgument:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
   Enabled: false

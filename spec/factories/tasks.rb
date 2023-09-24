@@ -3,7 +3,7 @@ FactoryBot.define do
     title { Faker::Lorem.words(number: 7).join(' ') }
     description { Faker::Lorem.paragraph }
     status { 'Fresh' }
-    project { create(:project) }
+    project { association(:project) }
   end
 
   trait :task_working do
