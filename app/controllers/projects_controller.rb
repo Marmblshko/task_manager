@@ -24,6 +24,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.creator_id = current_user.id
     @project.users_in_project = [current_user.id] if @project.users_in_project.blank?
+
     if @project.save
       Membership.create(user_id: current_user.id, project_id: @project.id)
       respond_to do |format|

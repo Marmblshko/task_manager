@@ -10,9 +10,9 @@ class ReportsController < ApplicationController
   end
 
   def create
-    @report = @task.reports.create(report_params)
-    @report.creator_username = current_user.username
-    @report.creator_id = current_user.id
+    @report = @task.reports.build(report_params.merge(creator_username: current_user.username,
+                                                      creator_id: current_user.id))
+
     if @report.save
       respond_to do |format|
         format.html { redirect_to @task, notice: 'Report was successfully created.' }
